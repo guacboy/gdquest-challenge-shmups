@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://ckvprqhsdxolf"]
+
+[ext_resource type="PackedScene" uid="uid://c1bttwbfniio0" path="res://Common/Backgrounds/interface.tscn" id="1_qem6m"]
+[ext_resource type="Script" path="res://Scenes/main.gd" id="1_ttnt3"]
+[ext_resource type="PackedScene" uid="uid://cgicx1bmqkdlq" path="res://Characters/Player/player.tscn" id="2_em84q"]
+[ext_resource type="PackedScene" uid="uid://ci7eboic81nd4" path="res://Characters/Enemy/enemy_basic.tscn" id="4_os66r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pkct5"]
+size = Vector2(27.5, 167)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bf13x"]
+size = Vector2(205.974, 19.2987)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ttnt3")
+
+[node name="Interface" parent="." instance=ExtResource("1_qem6m")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Player" parent="." instance=ExtResource("2_em84q")]
+position = Vector2(958, 828)
+scale = Vector2(1.88, 1.88)
+
+[node name="EnemyBasic" parent="." instance=ExtResource("4_os66r")]
+position = Vector2(77, 79)
+scale = Vector2(1.83759, 1.83759)
+
+[node name="Borders" type="Node2D" parent="."]
+
+[node name="BorderLeft" type="StaticBody2D" parent="Borders"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BorderLeft"]
+position = Vector2(-12.25, 803)
+shape = SubResource("RectangleShape2D_pkct5")
+
+[node name="BorderRight" type="StaticBody2D" parent="Borders"]
+position = Vector2(1948, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BorderRight"]
+position = Vector2(-16, 803)
+shape = SubResource("RectangleShape2D_pkct5")
+
+[node name="BorderTop" type="Area2D" parent="Borders" groups=["boundary"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BorderTop"]
+position = Vector2(956, -117)
+scale = Vector2(12.924, 2.79609)
+shape = SubResource("RectangleShape2D_bf13x")
+
+[connection signal="area_entered" from="Borders/BorderTop" to="." method="_on_border_top_area_entered"]

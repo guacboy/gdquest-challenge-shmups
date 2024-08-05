@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bw03ftdgkgqv7"]
+
+[ext_resource type="Script" path="res://Common/Projectiles/bullet.gd" id="1_42p80"]
+[ext_resource type="Texture2D" uid="uid://dhaluayeqjc8b" path="res://Characters/SimplePixelSpaceships.png" id="1_kjm81"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rhhnn"]
+radius = 2.0
+height = 8.0
+
+[node name="Bullet" type="Area2D" groups=["bullet"]]
+script = ExtResource("1_42p80")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3, 1)
+texture = ExtResource("1_kjm81")
+hframes = 16
+vframes = 17
+frame = 152
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -1)
+shape = SubResource("CapsuleShape2D_rhhnn")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

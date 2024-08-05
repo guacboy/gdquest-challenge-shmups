@@ -1,0 +1,108 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1bttwbfniio0"]
+
+[ext_resource type="Theme" uid="uid://qtw0ie6wo01r" path="res://default.tres" id="1_wioq7"]
+[ext_resource type="Texture2D" uid="uid://dhaluayeqjc8b" path="res://Characters/SimplePixelSpaceships.png" id="2_2q2po"]
+
+[node name="Interface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_wioq7")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="UIBackground" type="ColorRect" parent="."]
+layout_mode = 2
+anchor_top = 0.805704
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.160034
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+color = Color(0.505882, 0.262745, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="StatsBox" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.805556
+anchor_right = 1.0
+anchor_bottom = 1.00093
+grow_horizontal = 2
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="HighscoreBox" type="VBoxContainer" parent="StatsBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Highscore" type="RichTextLabel" parent="StatsBox/HighscoreBox"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[center]000000[/center]"
+scroll_active = false
+
+[node name="HighscoreLabel" type="RichTextLabel" parent="StatsBox/HighscoreBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.64
+bbcode_enabled = true
+text = "[center]HIGHSCORE[/center]"
+
+[node name="LivesBox" type="VBoxContainer" parent="StatsBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Placeholder" type="RichTextLabel" parent="StatsBox/LivesBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+
+[node name="LivesLabel" type="RichTextLabel" parent="StatsBox/LivesBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.65
+bbcode_enabled = true
+text = "[center]LIVES[/center]"
+
+[node name="ShipLives" type="Node2D" parent="StatsBox"]
+position = Vector2(0, -939)
+metadata/_edit_group_ = true
+
+[node name="ShipLifeOne" type="Sprite2D" parent="StatsBox/ShipLives"]
+position = Vector2(1367.5, 985.411)
+scale = Vector2(4.56251, 4.67642)
+texture = ExtResource("2_2q2po")
+hframes = 10
+vframes = 17
+frame = 127
+
+[node name="ShipLifeTwo" type="Sprite2D" parent="StatsBox/ShipLives"]
+position = Vector2(1438, 985.411)
+scale = Vector2(4.56251, 4.67642)
+texture = ExtResource("2_2q2po")
+hframes = 10
+vframes = 17
+frame = 127
+
+[node name="ShipLifeThree" type="Sprite2D" parent="StatsBox/ShipLives"]
+position = Vector2(1507, 985.411)
+scale = Vector2(4.56251, 4.67642)
+texture = ExtResource("2_2q2po")
+hframes = 10
+vframes = 17
+frame = 127
