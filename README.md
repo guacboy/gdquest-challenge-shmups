@@ -16,7 +16,7 @@ To import the demo into the project manager:
 </li>
 <ul>
   <ul>
-    <li><code>git clone https://github.com/guacboy/gdquest-challenge-text-adventure</code></li>
+    <li><code>git clone https://github.com/guacboy/gdquest-challenge-shmups</code></li>
   </ul>
 </ul>
 <li>
