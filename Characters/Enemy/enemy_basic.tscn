@@ -18,5 +18,9 @@ hframes = 10
 vframes = 17
 frame = 111
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_uy1gw")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
