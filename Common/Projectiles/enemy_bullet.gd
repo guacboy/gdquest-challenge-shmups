@@ -1,7 +1,7 @@
 extends Area2D
 
 func _physics_process(delta):
-	position.y += 20
+	position.y += 10
 	
 func _on_area_entered(area):
 	if area.is_in_group("player"):

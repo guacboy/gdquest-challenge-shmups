@@ -10,6 +10,10 @@ height = 38.0
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_bhnvu")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 1)
+shape = SubResource("CapsuleShape2D_yejeq")
+
 [node name="Ship" type="Sprite2D" parent="."]
 position = Vector2(-1, 0)
 scale = Vector2(3.004, 3.079)
