@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckvprqhsdxolf"]
+[gd_scene load_steps=6 format=3 uid="uid://ckvprqhsdxolf"]
 
 [ext_resource type="PackedScene" uid="uid://c1bttwbfniio0" path="res://Common/Backgrounds/interface.tscn" id="1_qem6m"]
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_ttnt3"]
@@ -7,9 +7,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pkct5"]
 size = Vector2(27.5, 167)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bf13x"]
-size = Vector2(205.974, 19.2987)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ttnt3")
@@ -45,12 +42,3 @@ position = Vector2(1948, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BorderRight"]
 position = Vector2(-16, 803)
 shape = SubResource("RectangleShape2D_pkct5")
-
-[node name="BorderTop" type="Area2D" parent="Borders" groups=["boundary"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BorderTop"]
-position = Vector2(956, -117)
-scale = Vector2(12.924, 2.79609)
-shape = SubResource("RectangleShape2D_bf13x")
-
-[connection signal="area_entered" from="Borders/BorderTop" to="." method="_on_border_top_area_entered"]
