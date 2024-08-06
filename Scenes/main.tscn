@@ -21,7 +21,7 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="Player" parent="." instance=ExtResource("2_em84q")]
-position = Vector2(958, 828)
+position = Vector2(958, 874)
 scale = Vector2(1.88, 1.88)
 
 [node name="EnemyBasic" parent="." instance=ExtResource("4_os66r")]
@@ -29,6 +29,7 @@ position = Vector2(956, 663)
 scale = Vector2(1.83759, 1.83759)
 
 [node name="Borders" type="Node2D" parent="."]
+position = Vector2(0, 81)
 
 [node name="BorderLeft" type="StaticBody2D" parent="Borders"]
 

@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1bttwbfniio0"]
+[gd_scene load_steps=6 format=3 uid="uid://c1bttwbfniio0"]
 
 [ext_resource type="Theme" uid="uid://qtw0ie6wo01r" path="res://default.tres" id="1_wioq7"]
 [ext_resource type="Texture2D" uid="uid://dhaluayeqjc8b" path="res://Characters/SimplePixelSpaceships.png" id="2_2q2po"]
+[ext_resource type="Shader" path="res://Common/Backgrounds/interface.gdshader" id="2_cj22v"]
+[ext_resource type="Texture2D" uid="uid://cfw6ssdahv2ub" path="res://Common/Backgrounds/Space Background.png" id="2_o3kku"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7x38m"]
+shader = ExtResource("2_cj22v")
 
 [node name="Interface" type="Control"]
 layout_mode = 3
@@ -12,33 +17,25 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_wioq7")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_7x38m")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="UIBackground" type="ColorRect" parent="."]
-layout_mode = 2
-anchor_top = 0.805704
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -0.160034
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-color = Color(0.505882, 0.262745, 0, 1)
-metadata/_edit_use_anchors_ = true
+texture = ExtResource("2_o3kku")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="StatsBox" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.805556
+anchor_top = 0.850926
 anchor_right = 1.0
-anchor_bottom = 1.00093
+anchor_bottom = 1.02315
 grow_horizontal = 2
 grow_vertical = 0
 metadata/_edit_use_anchors_ = true
