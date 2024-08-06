@@ -37,5 +37,8 @@ This demo is distributed under the terms of the MIT license, as described in the
   https://jfaexe.itch.io/simple-pixel-spaceships
 </li>
 <li>
+  https://deep-fold.itch.io/space-background-generator
+</li>
+<li>
   https://joebrogers.itch.io/bitpotion
 </li>
