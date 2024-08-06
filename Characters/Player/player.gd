@@ -19,3 +19,7 @@ func shoot() -> void:
 	bullet_instance.position = marker_2d.get_global_position()
 	get_parent().add_child(bullet_instance)
 	bullet_delay_timer.start()
+
+func _on_area_2d_area_entered(area):
+	if area.is_in_group("enemy bullet"):
+		queue_free()

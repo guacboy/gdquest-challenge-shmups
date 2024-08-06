@@ -25,7 +25,7 @@ position = Vector2(958, 874)
 scale = Vector2(1.88, 1.88)
 
 [node name="EnemyBasic" parent="." instance=ExtResource("4_os66r")]
-position = Vector2(956, 663)
+position = Vector2(956, 81.0001)
 scale = Vector2(1.83759, 1.83759)
 
 [node name="Borders" type="Node2D" parent="."]
