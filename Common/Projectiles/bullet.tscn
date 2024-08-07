@@ -22,6 +22,9 @@ frame = 152
 position = Vector2(-0.58234, -1.16468)
 shape = SubResource("CapsuleShape2D_rhhnn")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = -10.0
+
 [node name="DeleteSelfTimer" type="Timer" parent="."]
 autostart = true
 

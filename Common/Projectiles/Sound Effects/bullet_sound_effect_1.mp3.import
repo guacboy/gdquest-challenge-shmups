@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://mby144f275jd"
+path="res://.godot/imported/bullet_sound_effect_1.mp3-5360ae6d30e05bc1efa22878a1f897f2.mp3str"
+
+[deps]
+
+source_file="res://Common/Projectiles/Sound Effects/bullet_sound_effect_1.mp3"
+dest_files=["res://.godot/imported/bullet_sound_effect_1.mp3-5360ae6d30e05bc1efa22878a1f897f2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
