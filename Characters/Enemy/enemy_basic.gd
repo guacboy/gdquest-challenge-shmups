@@ -19,6 +19,8 @@ func _on_area_2d_area_entered(area):
 		explosion.rotation = randi_range(0, 360) # randomizes explosion
 		get_parent().add_child(explosion)
 		queue_free()
+	if area.is_in_group("death zone"):
+		queue_free()
 
 func _on_shoot_timer_timeout():
 	var bullet_instance := preload("res://Common/Projectiles/enemy_bullet.tscn").instantiate()

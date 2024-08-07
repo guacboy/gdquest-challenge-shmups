@@ -1,17 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckvprqhsdxolf"]
+[gd_scene load_steps=9 format=3 uid="uid://ckvprqhsdxolf"]
 
 [ext_resource type="PackedScene" uid="uid://c1bttwbfniio0" path="res://Common/Backgrounds/interface.tscn" id="1_qem6m"]
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_ttnt3"]
 [ext_resource type="PackedScene" uid="uid://cgicx1bmqkdlq" path="res://Characters/Player/player.tscn" id="2_em84q"]
+[ext_resource type="Script" path="res://Scenes/death_zone.gd" id="4_kq45u"]
 
 [sub_resource type="Curve2D" id="Curve2D_u6id5"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 42, -137, 0, 0, 0, 0, 1872, -138)
+"points": PackedVector2Array(0, 0, 0, 0, 640, -136, 0, 0, 0, 0, 1280, -139)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_xdqia"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -4, -35, 0, 0, 0, 0, 547.392, -33)
 }
 point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pkct5"]
 size = Vector2(27.5, 167)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44y6i"]
+size = Vector2(1990, 22)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ttnt3")
@@ -29,32 +39,70 @@ grow_vertical = 1
 position = Vector2(958, 874)
 scale = Vector2(1.88, 1.88)
 
-[node name="EnemySpawn" type="Path2D" parent="."]
-position = Vector2(0, 99)
-curve = SubResource("Curve2D_u6id5")
+[node name="Enemy" type="Node" parent="."]
 
-[node name="PathFollow2D" type="PathFollow2D" parent="EnemySpawn"]
-position = Vector2(42, -137)
-rotation = -0.000546448
-
-[node name="SpawnTimer" type="Timer" parent="."]
+[node name="EnemySpawnTimer" type="Timer" parent="Enemy"]
 wait_time = 1.5
 autostart = true
 
-[node name="Borders" type="Node2D" parent="."]
-position = Vector2(0, 81)
+[node name="EnemySpawn" type="Path2D" parent="Enemy"]
+position = Vector2(0, 99)
+curve = SubResource("Curve2D_u6id5")
+
+[node name="EnemySpawnLocation" type="PathFollow2D" parent="Enemy/EnemySpawn"]
+position = Vector2(640, -136)
+rotation = -0.00468747
+
+[node name="Asteroid" type="Node" parent="."]
+
+[node name="AsteroidSpawnTimerLeft" type="Timer" parent="Asteroid"]
+autostart = true
+
+[node name="AsteroidSpawnTimerRight" type="Timer" parent="Asteroid"]
+autostart = true
+
+[node name="AsteroidSpawnLeft" type="Path2D" parent="Asteroid"]
+position = Vector2(58, 1)
+scale = Vector2(0.89698, 1)
+curve = SubResource("Curve2D_xdqia")
+
+[node name="AsteroidSpawnLocationLeft" type="PathFollow2D" parent="Asteroid/AsteroidSpawnLeft"]
+position = Vector2(-4, -35)
+rotation = 0.00362717
+
+[node name="AsteroidSpawnRight" type="Path2D" parent="Asteroid"]
+position = Vector2(1344, 0)
+curve = SubResource("Curve2D_xdqia")
+
+[node name="AsteroidSpawnLocationRight" type="PathFollow2D" parent="Asteroid/AsteroidSpawnRight"]
+position = Vector2(-4, -35)
+rotation = 0.00362717
+
+[node name="Borders" type="Node" parent="."]
 
 [node name="BorderLeft" type="StaticBody2D" parent="Borders"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BorderLeft"]
-position = Vector2(-12.25, 803)
+position = Vector2(587, 874)
 shape = SubResource("RectangleShape2D_pkct5")
 
 [node name="BorderRight" type="StaticBody2D" parent="Borders"]
 position = Vector2(1948, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BorderRight"]
-position = Vector2(-16, 803)
+position = Vector2(-617, 874)
 shape = SubResource("RectangleShape2D_pkct5")
 
-[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[node name="DeathZone" type="Area2D" parent="Borders" groups=["death zone"]]
+position = Vector2(0, 2130)
+script = ExtResource("4_kq45u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/DeathZone"]
+position = Vector2(958, -989)
+shape = SubResource("RectangleShape2D_44y6i")
+
+[connection signal="timeout" from="Enemy/EnemySpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="Enemy/EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
+[connection signal="timeout" from="Asteroid/AsteroidSpawnTimerLeft" to="." method="_on_asteroid_spawn_timer_left_timeout"]
+[connection signal="timeout" from="Asteroid/AsteroidSpawnTimerRight" to="." method="_on_asteroid_spawn_timer_right_timeout"]
+[connection signal="area_entered" from="Borders/DeathZone" to="Borders/DeathZone" method="_on_area_entered"]
