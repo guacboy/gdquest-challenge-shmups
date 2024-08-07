@@ -2,16 +2,22 @@ extends CharacterBody2D
 
 @onready var marker_2d = $Marker2D
 @onready var shoot_timer = $ShootTimer
+@onready var ship = $Ship
 
 func _ready() -> void:
 	shoot_timer.wait_time = randf_range(1.0, 2.0)
 	shoot_timer.start()
 
+# movement
 func _physics_process(delta) -> void:
 	position.y += 1
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("bullet"):
+		var explosion := preload("res://Common/Effects/explosion.tscn").instantiate()
+		explosion.global_position = global_position
+		explosion.rotation = randi_range(0, 360) # randomizes explosion
+		get_parent().add_child(explosion)
 		queue_free()
 
 func _on_shoot_timer_timeout():

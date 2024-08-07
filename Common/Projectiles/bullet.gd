@@ -1,5 +1,6 @@
 extends Area2D
 
+# bullet speed
 func _physics_process(delta):
 	position.y -= 20
 	
