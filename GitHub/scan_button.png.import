@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxggknym4c0n8"
-path="res://.godot/imported/scan_button.png-3e4f23efe02ca8a7bef0cc19f2e54be3.ctex"
+uid="uid://cqqscljptcvuv"
+path="res://.godot/imported/scan_button.png-834069bc3f822042b634b7c700e9b767.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scan_button.png"
-dest_files=["res://.godot/imported/scan_button.png-3e4f23efe02ca8a7bef0cc19f2e54be3.ctex"]
+source_file="res://GitHub/scan_button.png"
+dest_files=["res://.godot/imported/scan_button.png-834069bc3f822042b634b7c700e9b767.ctex"]
 
 [params]
 

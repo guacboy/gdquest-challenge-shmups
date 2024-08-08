@@ -11,12 +11,12 @@ const SPEED: float = 600.0
 var player_control: bool = true
 
 func _physics_process(delta) -> void:
-	# movement
-	var direction = Input.get_axis("move_left", "move_right")
-	velocity.x = direction * SPEED
-	move_and_slide()
-	
 	if player_control:
+		# movement
+		var direction = Input.get_axis("move_left", "move_right")
+		velocity.x = direction * SPEED
+		move_and_slide()
+	
 		# adds a delay between each bullet; prevents machine gunning
 		if (Input.is_action_pressed("shoot")
 		and bullet_delay_timer.is_stopped()):
@@ -48,6 +48,7 @@ func _on_area_2d_area_entered(area):
 func _on_respawn_timer_timeout():
 	player_control = true
 	
+	# fades sprite in-n-out, similar to invincibility frames
 	var tween := create_tween()
 	tween.tween_property(ship, "visible", false, 0.1)
 	tween.tween_property(ship, "visible", true, 0.1)
