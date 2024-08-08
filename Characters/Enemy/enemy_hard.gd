@@ -3,10 +3,8 @@ extends CharacterBody2D
 @onready var ship = $Ship
 @onready var marker_left = $MarkerLeft
 @onready var marker_right = $MarkerRight
+@onready var health_bar = $HealthBar
 @onready var shoot_timer = $ShootTimer
-@onready var double_shoot_timer = $DoubleShootTimer
-
-var max_health := 5
 
 func _ready() -> void:
 	shoot_timer.wait_time = randf_range(1.0, 2.0)
@@ -24,9 +22,10 @@ func shoot(marker) -> void:
 	get_parent().add_child(bullet_instance)
 
 func take_damage() -> void:
-	max_health -= 1
+	health_bar.visible = true
+	health_bar.value -= 1
 	
-	if max_health <= 0:
+	if health_bar.value <= 0:
 		explode_on_death()
 
 # plays explosion after death

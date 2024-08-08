@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlnhqqom26di8"]
+[gd_scene load_steps=5 format=3 uid="uid://dlnhqqom26di8"]
 
 [ext_resource type="Script" path="res://Characters/Enemy/enemy_hard.gd" id="1_7yt6b"]
 [ext_resource type="Texture2D" uid="uid://dhaluayeqjc8b" path="res://Characters/SimplePixelSpaceships.png" id="2_fkw7p"]
+[ext_resource type="Theme" uid="uid://qtw0ie6wo01r" path="res://default.tres" id="3_ggrta"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uy1gw"]
 radius = 18.0
@@ -32,6 +33,18 @@ scale = Vector2(1.1588, 1.1588)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2(1.04661, 1.04661)
 shape = SubResource("CapsuleShape2D_uy1gw")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+visible = false
+offset_left = -23.0
+offset_top = -27.0
+offset_right = 23.0
+offset_bottom = -21.0
+theme = ExtResource("3_ggrta")
+max_value = 5.0
+step = 1.0
+value = 5.0
+show_percentage = false
 
 [node name="ShootTimer" type="Timer" parent="."]
 
