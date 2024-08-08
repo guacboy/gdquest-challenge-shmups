@@ -4,13 +4,18 @@ extends Node2D
 @onready var asteroid_spawn_location_left = $Asteroid/AsteroidSpawnLeft/AsteroidSpawnLocationLeft
 @onready var asteroid_spawn_location_right = $Asteroid/AsteroidSpawnRight/AsteroidSpawnLocationRight
 
+var enemy_list := [
+	preload("res://Characters/Enemy/enemy_basic.tscn"),
+	preload("res://Characters/Enemy/enemy_medium.tscn"),
+]
+
 var asteroid_list := [
 	preload("res://Common/Asteriods/small_asteriod.tscn"),
 	preload("res://Common/Asteriods/big_asteriod.tscn"),
 ]
 
 func _on_enemy_spawn_timer_timeout():
-	var enemy_instance := preload("res://Characters/Enemy/enemy_basic.tscn").instantiate()
+	var enemy_instance = enemy_list.pick_random().instantiate()
 	enemy_spawn_location.progress_ratio = randf()
 	enemy_instance.position = enemy_spawn_location.global_position
 	add_child(enemy_instance)

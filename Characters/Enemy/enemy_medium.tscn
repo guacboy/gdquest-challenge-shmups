@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://0dxxed0cxf2g"]
+
+[ext_resource type="Script" path="res://Characters/Enemy/enemy_medium.gd" id="1_xicxj"]
+[ext_resource type="Texture2D" uid="uid://dhaluayeqjc8b" path="res://Characters/SimplePixelSpaceships.png" id="2_26wg4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uy1gw"]
+radius = 18.0
+height = 36.0
+
+[node name="EnemyMedium" type="CharacterBody2D"]
+position = Vector2(193, 107)
+scale = Vector2(1.4791, 1.4791)
+script = ExtResource("1_xicxj")
+
+[node name="Ship" type="Sprite2D" parent="."]
+position = Vector2(1.90735e-06, 1.90735e-06)
+scale = Vector2(3.07895, 3.07895)
+texture = ExtResource("2_26wg4")
+hframes = 10
+vframes = 17
+frame = 113
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, 31)
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
+scale = Vector2(1.1588, 1.1588)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(1.04661, 1.04661)
+shape = SubResource("CapsuleShape2D_uy1gw")
+
+[node name="ShootTimer" type="Timer" parent="."]
+
+[node name="DoubleShootTimer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="DoubleShootTimer" to="." method="_on_double_shoot_timer_timeout"]
