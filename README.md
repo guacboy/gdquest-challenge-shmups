@@ -21,7 +21,7 @@ To import the demo into the project manager:
 </ul>
 <li>
   Open Godot's project manager and click the
-  <img src="scan_button.png" style="height: 20px">
+  <img src=".readme_pretty/scan_button.png" style="height: 20px">
   button on the top-left.
 </li>
 <li>
