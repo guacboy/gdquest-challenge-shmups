@@ -30,10 +30,10 @@ func take_damage() -> void:
 
 # plays explosion after death
 func explode_on_death() -> void:
-	var explosion := preload("res://Common/Effects/explosion.tscn").instantiate()
-	explosion.global_position = global_position
-	explosion.rotation = randi_range(0, 360) # randomizes explosion
-	get_parent().add_child(explosion)
+	var explosion_instance := preload("res://Common/Effects/explosion.tscn").instantiate()
+	explosion_instance.global_position = global_position
+	explosion_instance.rotation = randi_range(0, 360) # randomizes explosion
+	get_parent().add_child(explosion_instance)
 	
 	# add to highscore
 	Signals.emit_signal("on_score_increment", 100)

@@ -4,6 +4,10 @@ extends Node2D
 @onready var asteroid_spawn_location_left = $Asteroid/AsteroidSpawnLeft/AsteroidSpawnLocationLeft
 @onready var asteroid_spawn_location_right = $Asteroid/AsteroidSpawnRight/AsteroidSpawnLocationRight
 
+@onready var game_over = $GameOverOverlay/VBoxContainer/GameOver
+@onready var retry_button = $GameOverOverlay/VBoxContainer/RetryButton
+@onready var quit_button = $GameOverOverlay/VBoxContainer/QuitButton
+
 var enemy_list := [
 	preload("res://Characters/Enemy/enemy_basic.tscn"),
 	preload("res://Characters/Enemy/enemy_medium.tscn"),
@@ -32,3 +36,18 @@ func _on_asteroid_spawn_timer_right_timeout():
 	asteroid_spawn_location_right.progress_ratio = randf()
 	asteroid_instance.position = asteroid_spawn_location_right.global_position
 	add_child(asteroid_instance)
+
+func _on_game_over_display_timer_timeout():
+	var tween := create_tween()
+	tween.tween_property(game_over, "visible_ratio", 0.5, 0.5)
+	tween.tween_property(game_over, "visible_ratio", 1.0, 0.5).set_delay(0.5)
+	tween.tween_property(retry_button, "modulate:a", 1.0, 0.1).set_delay(0.5)
+	retry_button.disabled = false
+	tween.tween_property(quit_button, "modulate:a", 1.0, 0.1)
+	quit_button.disabled = false
+
+func _on_retry_button_pressed():
+	get_tree().reload_current_scene()
+
+func _on_quit_button_pressed():
+	get_tree().quit()

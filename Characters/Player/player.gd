@@ -7,9 +7,11 @@ extends CharacterBody2D
 @onready var respawn_timer = $RespawnTimer
 @onready var invincibility_timer = $InvincibilityTimer
 
+@onready var game_over_display_timer = $"../GameOverOverlay/GameOverDisplayTimer"
+
 const SPEED: float = 600.0
 var player_control: bool = true
-var max_life: int = 3
+var extra_life: int = 0
 
 func _physics_process(delta) -> void:
 	if player_control:
@@ -34,21 +36,21 @@ func _on_area_2d_area_entered(area):
 	or area.is_in_group("enemy")
 	or area.is_in_group("asteroid")):
 		# explosion on death
-		var explosion := preload("res://Common/Effects/explosion.tscn").instantiate()
-		explosion.global_position = global_position
-		explosion.rotation = randi_range(0, 360) # randomizes explosion
-		get_parent().add_child(explosion)
+		var explosion_instance := preload("res://Common/Effects/explosion.tscn").instantiate()
+		explosion_instance.global_position = global_position
+		explosion_instance.rotation = randi_range(0, 360) # randomizes explosion
+		get_parent().add_child(explosion_instance)
 		
-		max_life -= 1
+		extra_life -= 1
+		# disables shooting and "respawns" ship with invincibility frames
+		ship.visible = false
+		collision_shape_2d.set_deferred("disabled", true)
 		player_control = false
 		
-		if max_life >= 0:
-			# disables shooting and "respawns" ship with invincibility frames
-			ship.visible = false
-			collision_shape_2d.set_deferred("disabled", true)
-			
+		if extra_life >= 0:
 			respawn_timer.start()
 		else:
+			game_over_display_timer.start() # adds a delay before Game Over screen
 			queue_free()
 
 func _on_respawn_timer_timeout():
