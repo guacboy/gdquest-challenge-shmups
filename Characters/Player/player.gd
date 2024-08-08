@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var respawn_timer = $RespawnTimer
 @onready var invincibility_timer = $InvincibilityTimer
 
+@onready var game_start_overlay = $"../GameStartOverlay"
 @onready var game_over_display_timer = $"../GameOverOverlay/GameOverDisplayTimer"
 
 const SPEED: float = 600.0
@@ -50,6 +51,8 @@ func _on_area_2d_area_entered(area):
 		if extra_life >= 0:
 			respawn_timer.start()
 		else:
+			if game_start_overlay.visible == true:
+				game_start_overlay.visible = false
 			game_over_display_timer.start() # adds a delay before Game Over screen
 			queue_free()
 
