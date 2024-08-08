@@ -7,6 +7,7 @@ extends Node2D
 var enemy_list := [
 	preload("res://Characters/Enemy/enemy_basic.tscn"),
 	preload("res://Characters/Enemy/enemy_medium.tscn"),
+	preload("res://Characters/Enemy/enemy_hard.tscn"),
 ]
 
 var asteroid_list := [

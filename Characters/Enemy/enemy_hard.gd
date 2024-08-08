@@ -1,25 +1,26 @@
 extends CharacterBody2D
 
 @onready var ship = $Ship
-@onready var marker_2d = $Marker2D
+@onready var marker_left = $MarkerLeft
+@onready var marker_right = $MarkerRight
 @onready var shoot_timer = $ShootTimer
 @onready var double_shoot_timer = $DoubleShootTimer
 
-var max_health := 3
+var max_health := 5
 
 func _ready() -> void:
 	shoot_timer.wait_time = randf_range(1.0, 2.0)
-	double_shoot_timer.wait_time = shoot_timer.wait_time + 0.1
 	shoot_timer.start()
-	double_shoot_timer.start()
 
 # movement
 func _physics_process(delta) -> void:
-	position.y += 0.5
+	position.y += 0.25
 
-func shoot() -> void:
+func shoot(marker) -> void:
+	var marker_position = marker
+	
 	var bullet_instance := preload("res://Common/Projectiles/enemy_bullet.tscn").instantiate()
-	bullet_instance.position = marker_2d.get_global_position()
+	bullet_instance.position = marker_position.get_global_position()
 	get_parent().add_child(bullet_instance)
 
 func take_damage() -> void:
@@ -45,14 +46,8 @@ func _on_area_2d_area_entered(area):
 		queue_free()
 
 func _on_shoot_timer_timeout():
-	shoot()
+	shoot(marker_left)
+	shoot(marker_right)
 	
 	shoot_timer.wait_time = randf_range(1.0, 2.0)
 	shoot_timer.start()
-
-# allows for rapid succession shots
-func _on_double_shoot_timer_timeout():
-	shoot()
-	
-	double_shoot_timer.wait_time = shoot_timer.wait_time
-	double_shoot_timer.start()
