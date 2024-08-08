@@ -9,7 +9,7 @@ var bullet_sound_list := [
 ]
 
 func _ready() -> void:
-	audio_stream_player_2d.stream = bullet_sound_list[randi_range(0, len(bullet_sound_list) - 1)]
+	audio_stream_player_2d.stream = bullet_sound_list.pick_random()
 	audio_stream_player_2d.play()
 
 # bullet speed

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bc3hpt0sm1bao"]
+
+[ext_resource type="Texture2D" uid="uid://cw5nsciflf6so" path="res://Common/Asteriods/Asteroids#01.png" id="1_l8lg1"]
+[ext_resource type="Script" path="res://Common/Asteriods/small_asteriod.gd" id="2_py8ei"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lclru"]
+radius = 20.0
+
+[node name="BigAsteriod" type="Sprite2D" groups=["asteroid"]]
+position = Vector2(332, 202)
+texture = ExtResource("1_l8lg1")
+hframes = 2
+frame = 1
+script = ExtResource("2_py8ei")
+
+[node name="Area2D" type="Area2D" parent="." groups=["asteroid"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-4, -1)
+shape = SubResource("CircleShape2D_lclru")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

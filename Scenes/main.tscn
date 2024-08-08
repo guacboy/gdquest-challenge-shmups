@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_ttnt3"]
 [ext_resource type="PackedScene" uid="uid://cgicx1bmqkdlq" path="res://Characters/Player/player.tscn" id="2_em84q"]
 [ext_resource type="Script" path="res://Scenes/death_zone.gd" id="4_kq45u"]
-[ext_resource type="PackedScene" uid="uid://ci7eboic81nd4" path="res://Characters/Enemy/enemy_basic.tscn" id="5_waog5"]
 
 [sub_resource type="Curve2D" id="Curve2D_u6id5"]
 _data = {
@@ -14,9 +13,15 @@ point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_xdqia"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -4, -35, 0, 0, 0, 0, 547.392, -33)
+"points": PackedVector2Array(0, 0, 0, 0, -4, -35, 0, 0, 0, 0, 547.392, -33, 0, 0, 0, 0, 541.818, -104, 0, 0, 0, 0, -5.57426, -95, 0, 0, 0, 0, 532.899, -183)
 }
-point_count = 2
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_wqkbi"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 527, -40, 0, 0, 0, 0, 25, -42, 0, 0, 0, 0, 27, -120, 0, 0, 0, 0, 533, -108, 0, 0, 0, 0, 22, -213)
+}
+point_count = 5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pkct5"]
 size = Vector2(27.5, 167)
@@ -57,11 +62,11 @@ rotation = -0.00468747
 [node name="Asteroid" type="Node" parent="."]
 
 [node name="AsteroidSpawnTimerLeft" type="Timer" parent="Asteroid"]
-wait_time = 0.5
+wait_time = 0.3
 autostart = true
 
 [node name="AsteroidSpawnTimerRight" type="Timer" parent="Asteroid"]
-wait_time = 0.5
+wait_time = 0.3
 autostart = true
 
 [node name="AsteroidSpawnLeft" type="Path2D" parent="Asteroid"]
@@ -75,11 +80,11 @@ rotation = 0.00362717
 
 [node name="AsteroidSpawnRight" type="Path2D" parent="Asteroid"]
 position = Vector2(1344, 0)
-curve = SubResource("Curve2D_xdqia")
+curve = SubResource("Curve2D_wqkbi")
 
 [node name="AsteroidSpawnLocationRight" type="PathFollow2D" parent="Asteroid/AsteroidSpawnRight"]
-position = Vector2(-4, -35)
-rotation = 0.00362717
+position = Vector2(527, -40)
+rotation = -3.13761
 
 [node name="Borders" type="Node" parent="."]
 
@@ -103,9 +108,6 @@ script = ExtResource("4_kq45u")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/DeathZone"]
 position = Vector2(958, -989)
 shape = SubResource("RectangleShape2D_44y6i")
-
-[node name="EnemyBasic" parent="." instance=ExtResource("5_waog5")]
-position = Vector2(1010, 770)
 
 [connection signal="timeout" from="Enemy/EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
 [connection signal="timeout" from="Enemy/EnemySpawnTimer" to="." method="_on_spawn_timer_timeout"]

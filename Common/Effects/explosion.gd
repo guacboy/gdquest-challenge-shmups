@@ -12,7 +12,7 @@ var explosion_sound_list := [
 ]
 
 func _ready() -> void:
-	audio_stream_player_2d.stream = explosion_sound_list[randi_range(0, len(explosion_sound_list) - 1)]
+	audio_stream_player_2d.stream = explosion_sound_list.pick_random()
 	audio_stream_player_2d.play()
 
 func _on_despawn_timer_timeout() -> void:
