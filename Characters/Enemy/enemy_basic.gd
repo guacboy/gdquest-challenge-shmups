@@ -4,6 +4,8 @@ extends CharacterBody2D
 @onready var shoot_timer = $ShootTimer
 @onready var ship = $Ship
 
+@onready var highscore = $StatsBox/HighscoreBox/Highscore
+
 func _ready() -> void:
 	shoot_timer.wait_time = randf_range(1.0, 2.0)
 	shoot_timer.start()
@@ -15,11 +17,17 @@ func _physics_process(delta) -> void:
 func _on_area_2d_area_entered(area):
 	if (area.is_in_group("bullet")
 	or area.is_in_group("player")):
+		# explosion on death
 		var explosion := preload("res://Common/Effects/explosion.tscn").instantiate()
 		explosion.global_position = global_position
 		explosion.rotation = randi_range(0, 360) # randomizes explosion
 		get_parent().add_child(explosion)
+		
+		# add to highscore
+		Signals.emit_signal("on_score_increment", 20)
+		
 		queue_free()
+		
 	if area.is_in_group("death zone"):
 		queue_free()
 

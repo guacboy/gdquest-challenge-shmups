@@ -34,6 +34,10 @@ func explode_on_death() -> void:
 	explosion.global_position = global_position
 	explosion.rotation = randi_range(0, 360) # randomizes explosion
 	get_parent().add_child(explosion)
+	
+	# add to highscore
+	Signals.emit_signal("on_score_increment", 50)
+	
 	queue_free()
 
 func _on_area_2d_area_entered(area):

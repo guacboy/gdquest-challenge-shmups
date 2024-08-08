@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1bttwbfniio0"]
+[gd_scene load_steps=7 format=3 uid="uid://c1bttwbfniio0"]
 
 [ext_resource type="Theme" uid="uid://qtw0ie6wo01r" path="res://default.tres" id="1_wioq7"]
 [ext_resource type="Texture2D" uid="uid://dhaluayeqjc8b" path="res://Characters/SimplePixelSpaceships.png" id="2_2q2po"]
+[ext_resource type="Script" path="res://Common/Backgrounds/interface.gd" id="2_6bhpf"]
 [ext_resource type="Shader" path="res://Common/Backgrounds/interface.gdshader" id="2_cj22v"]
 [ext_resource type="Texture2D" uid="uid://cfw6ssdahv2ub" path="res://Common/Backgrounds/Space Background.png" id="2_o3kku"]
 
@@ -16,6 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_wioq7")
+script = ExtResource("2_6bhpf")
 
 [node name="Background" type="TextureRect" parent="."]
 texture_repeat = 2

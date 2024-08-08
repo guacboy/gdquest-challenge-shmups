@@ -115,7 +115,7 @@ position = Vector2(0, 711)
 script = ExtResource("4_kq45u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/DeathZoneTop"]
-position = Vector2(958, -989)
+position = Vector2(958, -960)
 shape = SubResource("RectangleShape2D_44y6i")
 
 [connection signal="timeout" from="Enemy/EnemySpawnTimer" to="." method="_on_spawn_timer_timeout"]
