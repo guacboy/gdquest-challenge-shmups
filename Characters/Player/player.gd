@@ -22,7 +22,9 @@ func shoot() -> void:
 	bullet_delay_timer.start()
 
 func _on_area_2d_area_entered(area):
-	if area.is_in_group("enemy bullet"):
+	if (area.is_in_group("enemy bullet")
+	or area.is_in_group("enemy")
+	or area.is_in_group("asteroid")):
 		var explosion := preload("res://Common/Effects/explosion.tscn").instantiate()
 		explosion.global_position = global_position
 		explosion.rotation = randi_range(0, 360) # randomizes explosion

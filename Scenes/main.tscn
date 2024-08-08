@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://ckvprqhsdxolf"]
+[gd_scene load_steps=10 format=3 uid="uid://ckvprqhsdxolf"]
 
 [ext_resource type="PackedScene" uid="uid://c1bttwbfniio0" path="res://Common/Backgrounds/interface.tscn" id="1_qem6m"]
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_ttnt3"]
 [ext_resource type="PackedScene" uid="uid://cgicx1bmqkdlq" path="res://Characters/Player/player.tscn" id="2_em84q"]
 [ext_resource type="Script" path="res://Scenes/death_zone.gd" id="4_kq45u"]
+[ext_resource type="PackedScene" uid="uid://ci7eboic81nd4" path="res://Characters/Enemy/enemy_basic.tscn" id="5_waog5"]
 
 [sub_resource type="Curve2D" id="Curve2D_u6id5"]
 _data = {
@@ -56,9 +57,11 @@ rotation = -0.00468747
 [node name="Asteroid" type="Node" parent="."]
 
 [node name="AsteroidSpawnTimerLeft" type="Timer" parent="Asteroid"]
+wait_time = 0.5
 autostart = true
 
 [node name="AsteroidSpawnTimerRight" type="Timer" parent="Asteroid"]
+wait_time = 0.5
 autostart = true
 
 [node name="AsteroidSpawnLeft" type="Path2D" parent="Asteroid"]
@@ -83,14 +86,14 @@ rotation = 0.00362717
 [node name="BorderLeft" type="StaticBody2D" parent="Borders"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BorderLeft"]
-position = Vector2(587, 874)
+position = Vector2(0, 874)
 shape = SubResource("RectangleShape2D_pkct5")
 
 [node name="BorderRight" type="StaticBody2D" parent="Borders"]
 position = Vector2(1948, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BorderRight"]
-position = Vector2(-617, 874)
+position = Vector2(-28, 874)
 shape = SubResource("RectangleShape2D_pkct5")
 
 [node name="DeathZone" type="Area2D" parent="Borders" groups=["death zone"]]
@@ -101,8 +104,11 @@ script = ExtResource("4_kq45u")
 position = Vector2(958, -989)
 shape = SubResource("RectangleShape2D_44y6i")
 
-[connection signal="timeout" from="Enemy/EnemySpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[node name="EnemyBasic" parent="." instance=ExtResource("5_waog5")]
+position = Vector2(1010, 770)
+
 [connection signal="timeout" from="Enemy/EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
+[connection signal="timeout" from="Enemy/EnemySpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="Asteroid/AsteroidSpawnTimerLeft" to="." method="_on_asteroid_spawn_timer_left_timeout"]
 [connection signal="timeout" from="Asteroid/AsteroidSpawnTimerRight" to="." method="_on_asteroid_spawn_timer_right_timeout"]
 [connection signal="area_entered" from="Borders/DeathZone" to="Borders/DeathZone" method="_on_area_entered"]

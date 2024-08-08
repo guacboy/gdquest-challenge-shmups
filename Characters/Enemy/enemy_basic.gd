@@ -13,7 +13,8 @@ func _physics_process(delta) -> void:
 	position.y += 1
 
 func _on_area_2d_area_entered(area):
-	if area.is_in_group("bullet"):
+	if (area.is_in_group("bullet")
+	or area.is_in_group("player")):
 		var explosion := preload("res://Common/Effects/explosion.tscn").instantiate()
 		explosion.global_position = global_position
 		explosion.rotation = randi_range(0, 360) # randomizes explosion
