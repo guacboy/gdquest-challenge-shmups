@@ -11,7 +11,7 @@ extends CharacterBody2D
 
 const SPEED: float = 600.0
 var player_control: bool = true
-var extra_life: int = 0
+var extra_life: int = 3
 
 func _physics_process(delta) -> void:
 	if player_control:
