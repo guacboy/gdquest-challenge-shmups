@@ -82,8 +82,8 @@ text = "[center]LIVES[/center]"
 position = Vector2(0, -939)
 metadata/_edit_group_ = true
 
-[node name="ShipLifeOne" type="Sprite2D" parent="StatsBox/ShipLives"]
-position = Vector2(1367.5, 985.411)
+[node name="ShipLifeThree" type="Sprite2D" parent="StatsBox/ShipLives"]
+position = Vector2(1507, 985.411)
 scale = Vector2(4.56251, 4.67642)
 texture = ExtResource("2_2q2po")
 hframes = 10
@@ -98,8 +98,8 @@ hframes = 10
 vframes = 17
 frame = 127
 
-[node name="ShipLifeThree" type="Sprite2D" parent="StatsBox/ShipLives"]
-position = Vector2(1507, 985.411)
+[node name="ShipLifeOne" type="Sprite2D" parent="StatsBox/ShipLives"]
+position = Vector2(1367.5, 985.411)
 scale = Vector2(4.56251, 4.67642)
 texture = ExtResource("2_2q2po")
 hframes = 10

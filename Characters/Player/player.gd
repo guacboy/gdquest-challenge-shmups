@@ -9,6 +9,7 @@ extends CharacterBody2D
 
 const SPEED: float = 600.0
 var player_control: bool = true
+var max_life: int = 3
 
 func _physics_process(delta) -> void:
 	if player_control:
@@ -38,15 +39,23 @@ func _on_area_2d_area_entered(area):
 		explosion.rotation = randi_range(0, 360) # randomizes explosion
 		get_parent().add_child(explosion)
 		
-		# disables shooting and "respawns" ship with invincibility frames
+		max_life -= 1
 		player_control = false
-		ship.visible = false
-		collision_shape_2d.set_deferred("disabled", true)
-
-		respawn_timer.start()
+		
+		if max_life >= 0:
+			# disables shooting and "respawns" ship with invincibility frames
+			ship.visible = false
+			collision_shape_2d.set_deferred("disabled", true)
+			
+			respawn_timer.start()
+		else:
+			queue_free()
 
 func _on_respawn_timer_timeout():
 	player_control = true
+	
+	# takes away a life sprite
+	Signals.emit_signal("on_life_decrement")
 	
 	# fades sprite in-n-out, similar to invincibility frames
 	var tween := create_tween()

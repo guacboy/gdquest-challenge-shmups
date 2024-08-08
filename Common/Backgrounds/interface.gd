@@ -1,12 +1,19 @@
 extends Control
 
 @onready var highscore = $StatsBox/HighscoreBox/Highscore
+@onready var ship_lives = $StatsBox/ShipLives
 
 var current_score: int = 0
 
 func _ready() -> void:
+	Signals.connect("on_life_decrement", _on_life_decrement)
 	Signals.connect("on_score_increment", _on_score_increment)
-	
+
+func _on_life_decrement() -> void:
+	for life in ship_lives.get_children():
+		life.queue_free()
+		break
+
 func _on_score_increment(amount) -> void:
 	current_score += amount
 	

@@ -4,8 +4,6 @@ extends CharacterBody2D
 @onready var shoot_timer = $ShootTimer
 @onready var ship = $Ship
 
-@onready var highscore = $StatsBox/HighscoreBox/Highscore
-
 func _ready() -> void:
 	shoot_timer.wait_time = randf_range(1.0, 2.0)
 	shoot_timer.start()
