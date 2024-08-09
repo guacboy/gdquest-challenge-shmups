@@ -3,6 +3,33 @@
 </h1>
 This repository serves as a practice project for learning <a href="https://godotengine.org">Godot Engine</a>, following the <a href="https://www.gdquest.com">GDQuest</a> course. It is intended purely for educational purposes and has no plans for further development. Please note that this repository is not affiliated with GDQuest.
 <h2>
+  Features
+</h2>
+<li>
+  Interactive Start Menu
+</li>
+<img src=".readme_pretty/interactive_start_menu.gif" style="height: 250px">
+<li>
+  Responsive Health Bars
+</li>
+<img src=".readme_pretty/responsive_health_bars.gif" style="height: 250px">
+<li>
+  Lives System
+</li>
+<img src=".readme_pretty/real_time_life_update.gif" style="height: 250px">
+<li>
+  Invincibility Frames
+</li>
+<img src=".readme_pretty/invincibility_frames.gif" style="height: 250px">
+<li>
+  Highscore Updates
+</li>
+<img src=".readme_pretty/real_time_high_score.gif" style="height: 250px">
+<li>
+  Game Over Animation
+</li>
+<img src=".readme_pretty/interactive_game_over_screen.gif" style="height: 250px">
+<h2>
   Downloading the Project File
 </h2>
 To import the demo into the project manager:
@@ -16,7 +43,9 @@ To import the demo into the project manager:
 </li>
 <ul>
   <ul>
-    <li><code>git clone https://github.com/guacboy/gdquest-challenge-shmups</code></li>
+    <li>
+      <code>git clone https://github.com/guacboy/gdquest-challenge-shmups</code>
+    </li>
   </ul>
 </ul>
 <li>
